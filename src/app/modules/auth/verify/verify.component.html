@@ -1,0 +1,13 @@
+<div class="container center-screen">
+  <div class="hidden md:block md:w-1/2 ">
+    <img src="login.png">
+  </div>
+  <div class="wrapper center-screen w-full sm:w-3/4 md:w-1/2">
+    <div class="w-full xl:w-3/4 main flex center-screen flex-wrap">
+      <div class="text-title w-100 text-center">Xác thực tài khoản</div>
+      <div class="text-small my-4 text-center w-100">Mã otp đã được gửi đến {{email}}</div>
+      <p-input-otp [(ngModel)]="otp" [integerOnly]="true" [autofocus]="true" [length]="6" size="large"></p-input-otp>
+      <a  class="my-4 orange" href=""> Gửi lại mã xác thực</a>
+    </div>
+  </div>
+</div>

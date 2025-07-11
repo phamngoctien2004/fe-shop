@@ -1,0 +1,36 @@
+<div class="container center-screen">
+  <div class="hidden md:block md:w-1/2">
+    <img src="login.png">
+  </div>
+  <div class="wrapper center-screen w-full sm:w-3/4 md:w-1/2">
+    <form
+      class="w-full xl:w-3/4 main"
+      #otp="ngForm" (ngSubmit)="sendOtp(otp)">
+
+      <div >
+        <label for="email" class="text-base mb-6 font-semibold">Tên đăng nhập</label>
+        <input pInputText id="email" class="mt-2" placeholder="Nhập địa chỉ email" type="email"
+               [(ngModel)]="email" #emailForm=ngModel name="email" required email>
+      </div>
+      @if (emailForm.invalid && emailForm.touched) {
+        @if (emailForm.errors?.['required']){
+          <div class="text-red-500 mt-3">Vui lòng nhập email</div>
+        } @else {
+          <div class="text-red-500 mt-3">Email không đúng định dạng</div>
+        }
+      }
+      <button pButton class="btn rounded-2xl mb-4 mt-8"
+      [disabled]="otp.invalid"> Đăng nhập</button>
+
+      <div class="center-screen flex-wrap google">
+        <hr class="w-1/4">
+        <p class="text-small w-1/2 text-center">Hoặc đăng nhập bằng </p>
+        <hr class="w-1/4">
+        <a href="#" class="mt-4 p-3 bg-white rounded-full shadow-sm">
+          <img src="google_logo.webp" alt="google" class="icon">
+        </a>
+
+      </div>
+    </form>
+  </div>
+</div>

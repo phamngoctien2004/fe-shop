@@ -1,0 +1,13 @@
+.main{
+  /*background: var(--color-stone-50);*/
+  padding:3rem;
+}
+:host{
+  display: block;
+  background: linear-gradient(rgb(251, 242, 231) 0%, rgb(255, 255, 255) 100%);
+
+}
+
+.orange{
+  color:  rgba(248, 128, 5, 1);
+}

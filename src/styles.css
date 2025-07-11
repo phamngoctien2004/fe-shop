@@ -1,1 +1,124 @@
-/* You can add global styles to this file, and also import other style files */
+@import "tailwindcss";
+
+
+:root {
+  --main-gradient: linear-gradient(89.93deg, #ed480d 0.06%, #f15c0a 37.34%, #f88005 79.21%);
+}
+
+/*căn giữa màn hình*/
+.center-screen {
+  @apply flex items-center justify-center;
+}
+.default {
+  @apply block w-full;
+}
+.icon{
+  @apply w-[30px] h-[30px] object-contain
+}
+/**,*/
+/**::before,*/
+/**::after {*/
+/*  box-sizing: border-box;*/
+/*  margin: 0;*/
+/*  padding: 0;*/
+/*}*/
+
+html, body {
+  height: 100%;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  background-color: #ffffff; /* hoặc trắng: #fff */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Reset thêm cho các phần tử thường dùng */
+ul, ol {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+img, video {
+  max-width: 100%;
+  display: block;
+}
+
+app-root{
+  display:block;
+  min-height: 100vh;
+  width: 100%;
+  background-color: #ffffff;
+}
+
+.container {
+  width: 100%;
+  margin: 0 auto;
+  padding:0.25rem;
+}
+
+@media (min-width: 640px) {
+  .container {
+    max-width: 640px;
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    max-width: 768px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    max-width: 1024px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .container {
+    max-width: 1280px;
+  }
+}
+
+.wrapper{
+  min-height: 100vh;
+}
+.text-small{
+  font-size: 1rem;
+  color: gray;
+}
+.text-title{
+  font-size: 2rem;
+  font-weight: bold;
+}
+.text-href{
+  color: gray;
+}
+.btn{
+  background: var(--main-gradient) !important;
+  color: #ffff !important;
+  border: unset !important;
+  width: 100% !important;
+  padding-block: 1rem !important;
+  font-weight: 600 !important;
+  border-radius: 1rem !important;
+}
+.btn:hover{
+  border: unset !important;
+}
+
+
+.bg-img{
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+

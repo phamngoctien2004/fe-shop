@@ -1,0 +1,44 @@
+
+:host{
+    display: block;
+    background: linear-gradient(rgb(251, 242, 231) 0%, rgb(255, 255, 255) 100%);
+}
+.p-inputtext{
+    width: 100%;
+    padding: 1rem;
+}
+.p-inputtext:enabled:focus{
+  border:2px solid rgba(248, 128, 5, 1)
+}
+.p-floatlabel:has(input:focus) label{
+  color:  rgba(248, 128, 5, 1);
+}
+.input-group{
+    width: 100%;
+    margin: 20px 0;
+}
+.google{
+    margin: 20px 0;
+}
+hr{
+    color: gray;
+}
+.fa-google{
+    color: var(--color-stone-700);
+    font-size: 32px;
+    padding: 1rem;
+    margin: 1rem;
+    border: 1px solid var(--color-stone-700);
+    border-radius: 50%;
+    transition: 0.3s;
+}
+.fa-google:hover{
+    background: var(--color-stone-700);
+    color: #fff;
+}
+.main{
+    /*background: var(--color-neutral-50);*/
+  padding: 3rem 3rem 0;
+  border-radius: 12px;
+
+}
