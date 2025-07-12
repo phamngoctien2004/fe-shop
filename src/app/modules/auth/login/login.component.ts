@@ -23,14 +23,15 @@ export class LoginComponent {
   email: string = '';
 
   sendOtp(form: NgForm): void {
-    console.log(form.value);
     if (form.valid) {
       this.authService.getOtp(form.value).subscribe({
         next: (response) => {
-          console.log(form.value.email);
-          this.router.navigate(['/login/verify'], {
-            queryParams: form.value
-          });
+          console.log(response.data)
+          localStorage.setItem("email", form.value.email);
+
+          // xu ly thoi gian ve second
+          localStorage.setItem("time-otp", response.data);
+          this.router.navigate(['/login/verify']);
         },
         error: (error) => {
           console.log(error)

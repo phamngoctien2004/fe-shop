@@ -6,8 +6,18 @@
     <div class="w-full xl:w-3/4 main flex center-screen flex-wrap">
       <div class="text-title w-100 text-center">Xác thực tài khoản</div>
       <div class="text-small my-4 text-center w-100">Mã otp đã được gửi đến {{email}}</div>
-      <p-input-otp [(ngModel)]="otp" [integerOnly]="true" [autofocus]="true" [length]="6" size="large"></p-input-otp>
-      <a  class="my-4 orange" href=""> Gửi lại mã xác thực</a>
+      <p-input-otp [(ngModel)]="otp" [integerOnly]="true" [autofocus]="true" [length]="6" size="large"
+                  (ngModelChange)="otpChange($event)"></p-input-otp>
+      <a class="my-4 orange"  (click)="resendOtp()" style="cursor: pointer">Gửi lại mã xác thực </a>
+      <a class="my-4 mr-2 orange">&nbsp;{{countTime}}</a>
+      @if (isLoading){
+        <p-progress-spinner strokeWidth="8" fill="transparent" animationDuration=".5s" [style]="{ width: '20px', height: '20px' }" />
+      }
+      @if(isSuccess){
+        <p-message closable="true" severity="warn">Đã gửi lại otp vui lòng kiểm tra email</p-message>
+      }
+
+
     </div>
   </div>
 </div>

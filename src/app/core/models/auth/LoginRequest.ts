@@ -1,4 +1,5 @@
 export interface LoginRequest{
-  email:string;
+  email:string | null;
   otp:string;
+
 }
