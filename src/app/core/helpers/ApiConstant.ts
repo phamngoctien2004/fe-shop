@@ -3,7 +3,9 @@ export const API = {
   ENDPOINT: {
     AUTH: {
       OTP: '/auth/send-otp',
-      VERIFY: '/auth/verify-otp'
+      VERIFY: '/auth/verify-otp',
+      GOOGLE_LINK: '/auth/google-url',
+      GOOGLE_CALLBACK: '/auth/google/callback'
     }
   }
 

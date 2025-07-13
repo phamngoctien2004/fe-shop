@@ -20,6 +20,9 @@ export class LoginComponent {
   ) {
   }
 
+  ngOnInit():void {
+    localStorage.clear()
+  }
   email: string = '';
 
   sendOtp(form: NgForm): void {
@@ -42,4 +45,14 @@ export class LoginComponent {
     }
   }
 
+  loginGoogle(){
+    this.authService.loginGoogle().subscribe({
+      next: (response) => {
+        window.location.href = response.data
+      },
+      error: (error) => {
+        console.log(error)
+      }
+    })
+  }
 }

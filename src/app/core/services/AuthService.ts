@@ -23,12 +23,27 @@ export class AuthService {
   }
 
   verifyOtp(request: LoginRequest): Observable<ResponseDTO<LoginResponse>> {
-    return this.http.post<ResponseDTO<LoginResponse>>(this.url + API.ENDPOINT.AUTH.VERIFY, request);
+    return this.http.post<ResponseDTO<LoginResponse>>(this.url + API.ENDPOINT.AUTH.VERIFY, request,{
+      withCredentials: true
+    });
+  }
+
+  loginGoogle(): Observable<ResponseDTO<string>>{
+    return this.http.get<ResponseDTO<string>>(this.url + API.ENDPOINT.AUTH.GOOGLE_LINK);
+  }
+
+  callbackGoogle(code: string): Observable<ResponseDTO<LoginResponse>>{
+    return this.http.get<ResponseDTO<LoginResponse>>(
+      this.url + API.ENDPOINT.AUTH.GOOGLE_CALLBACK, {
+        params:{
+          code: code
+        },
+        withCredentials: true
+      });
   }
 
 
   getTimeDiff(value: string, ttl: number): number {
-    console.log("ok")
     const time = parseInt(value, 10);
     const now = Date.now();
     // tinh ra khoang thoi gian chenh lech giua hien tai va luc moi tao
@@ -45,5 +60,20 @@ export class AuthService {
 
   padding(n: number): string {
     return n < 10 ? '0' + n : n.toString();
+  }
+  setEmailLocalStorage(email: string){
+    localStorage.setItem("email", email);
+  }
+
+  setItemLoginSuccess(data: LoginResponse){
+    localStorage.setItem("access_token", data.accessToken);
+    localStorage.setItem("user", JSON.stringify(data.user));
+    localStorage.setItem("role", data.role)
+
+    localStorage.removeItem("email");
+    localStorage.removeItem("time-otp");
+  }
+  clearLocalStorage(){
+    localStorage.clear();
   }
 }

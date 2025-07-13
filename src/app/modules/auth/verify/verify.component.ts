@@ -6,13 +6,16 @@ import {LoginRequest} from '../../../core/models/auth/LoginRequest';
 import {AuthService} from '../../../core/services/AuthService';
 import {ProgressSpinnerModule} from 'primeng/progressspinner';
 import {MessageModule} from 'primeng/message';
+import {Toast} from 'primeng/toast';
+import {MessageService} from 'primeng/api';
 
 @Component({
   selector: 'app-verify',
-  imports: [InputOtpModule, FormsModule, ProgressSpinnerModule, MessageModule ],
+  imports: [InputOtpModule, FormsModule, ProgressSpinnerModule, MessageModule, Toast],
+  providers: [MessageService],
   templateUrl: './verify.component.html',
   standalone: true,
-  styleUrl: './verify.component.css'
+  styleUrl: './verify.component.css',
 })
 export class VerifyComponent {
   otp: string = '';
@@ -21,10 +24,13 @@ export class VerifyComponent {
   countInterval: any;
   isLoading: boolean = false;
   isSuccess: boolean = false;
+  isFail: boolean = false;
+
   constructor(
     private activeRoute: ActivatedRoute,
     private router: Router,
-    private authService: AuthService,) {
+    private authService: AuthService,
+    private messageService: MessageService) {
 
   }
 
@@ -44,9 +50,13 @@ export class VerifyComponent {
       this.authService.verifyOtp(request).subscribe({
         next: (response) => {
           console.log(response)
+          this.authService.setItemLoginSuccess(response.data)
+          this.show({severity: 'success', summary: 'Thành công', detail: 'Đăng nhập thành công', life: 3000})
+          this.router.navigate(['/'])
         },
         error: (error) => {
           console.error(error);
+          this.show({severity: 'error', summary: 'Lỗi', detail: 'Mã OTP không chính xác', life: 3000})
         }
       });
     }
@@ -63,19 +73,21 @@ export class VerifyComponent {
         let s = this.authService.getTimeDiff(timeOtp, 300);
         if (s <= 0) {
           clearInterval(this.countInterval);
+          this.countTime = '';
         }
         this.isLoading = false;
-        if(s >= 0){
+        if (s >= 0) {
           this.countTime = this.authService.displayCountTime(s);
         }
       }, 1000)
     }
     return false;
   }
+
   resendOtp(): void {
     this.isLoading = true;
     let check = this.canResend();
-    if(check){
+    if (check) {
       let email = this.email;
       this.authService.getOtp({email}).subscribe({
         next: (response) => {
@@ -84,14 +96,19 @@ export class VerifyComponent {
           localStorage.setItem("time-otp", response.data);
           console.log("gui lai thanh cong")
           this.isLoading = false;
-          this.isSuccess = true;
+          this.show({severity: 'success', summary: 'Thành công', detail: 'Đã gửi lại otp vui lòng kiểm tra email', life: 3000})
         },
         error: (error) => {
           console.log(error)
+
         }
       })
 
       ;
     }
+  }
+
+  show(value: any) {
+    this.messageService.add(value);
   }
 }
