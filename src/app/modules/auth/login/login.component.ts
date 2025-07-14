@@ -4,10 +4,13 @@ import {InputTextModule} from 'primeng/inputtext';
 import {FormsModule, NgForm} from '@angular/forms';
 import {AuthService} from '../../../core/services/AuthService';
 import {Router} from '@angular/router';
+import {ProgressBar} from 'primeng/progressbar';
+import {LoadingService} from '../../../core/services/LoadingService';
+import {AsyncPipe, NgIf} from '@angular/common';
 
 @Component({
   selector: 'app-login',
-  imports: [ButtonModule, InputTextModule, FormsModule],
+  imports: [ButtonModule, InputTextModule, FormsModule, ProgressBar, AsyncPipe, NgIf],
   templateUrl: './login.component.html',
   standalone: true,
   styleUrl: './login.component.css'
@@ -17,11 +20,12 @@ export class LoginComponent {
   constructor(
     private authService: AuthService,
     private router: Router,
+    protected loadingService: LoadingService
   ) {
   }
 
   ngOnInit():void {
-    localStorage.clear()
+    // localStorage.clear()
   }
   email: string = '';
 

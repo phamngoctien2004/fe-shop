@@ -1,3 +1,5 @@
+<p-progressbar mode="indeterminate" [style]="{'height': '4px'}"
+               *ngIf="this.loadingService.loading$ | async" color="#cb1c22"></p-progressbar>
 <div class="container center-screen">
   <div class="hidden md:block md:w-1/2 ">
     <img src="login.png">

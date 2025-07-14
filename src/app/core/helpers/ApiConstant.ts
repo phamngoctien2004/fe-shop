@@ -6,6 +6,9 @@ export const API = {
       VERIFY: '/auth/verify-otp',
       GOOGLE_LINK: '/auth/google-url',
       GOOGLE_CALLBACK: '/auth/google/callback'
+    },
+    USER: {
+      ME: '/user/me'
     }
   }
 

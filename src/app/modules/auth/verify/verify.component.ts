@@ -8,10 +8,13 @@ import {ProgressSpinnerModule} from 'primeng/progressspinner';
 import {MessageModule} from 'primeng/message';
 import {Toast} from 'primeng/toast';
 import {MessageService} from 'primeng/api';
+import {LoadingService} from '../../../core/services/LoadingService';
+import {AsyncPipe, NgIf} from '@angular/common';
+import {ProgressBar} from 'primeng/progressbar';
 
 @Component({
   selector: 'app-verify',
-  imports: [InputOtpModule, FormsModule, ProgressSpinnerModule, MessageModule, Toast],
+  imports: [InputOtpModule, FormsModule, ProgressSpinnerModule, MessageModule, Toast, AsyncPipe, NgIf, ProgressBar],
   providers: [MessageService],
   templateUrl: './verify.component.html',
   standalone: true,
@@ -30,7 +33,8 @@ export class VerifyComponent {
     private activeRoute: ActivatedRoute,
     private router: Router,
     private authService: AuthService,
-    private messageService: MessageService) {
+    private messageService: MessageService,
+    protected loadingService: LoadingService) {
 
   }
 
@@ -51,6 +55,7 @@ export class VerifyComponent {
         next: (response) => {
           console.log(response)
           this.authService.setItemLoginSuccess(response.data)
+          this.authService.initStateUser();
           this.show({severity: 'success', summary: 'Thành công', detail: 'Đăng nhập thành công', life: 3000})
           this.router.navigate(['/'])
         },

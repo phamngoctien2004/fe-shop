@@ -1,10 +1,17 @@
 import { Component } from '@angular/core';
 import {AuthService} from '../../../core/services/AuthService';
 import {ActivatedRoute} from '@angular/router';
+import {AsyncPipe, NgIf} from '@angular/common';
+import {ProgressBar} from 'primeng/progressbar';
+import {LoadingService} from '../../../core/services/LoadingService';
 
 @Component({
   selector: 'app-google',
-  imports: [],
+  imports: [
+    AsyncPipe,
+    NgIf,
+    ProgressBar
+  ],
   templateUrl: './google.component.html',
   standalone: true,
   styleUrl: './google.component.css'
@@ -12,8 +19,8 @@ import {ActivatedRoute} from '@angular/router';
 export class GoogleComponent {
   constructor(
     private authService: AuthService,
-    private activatedRoute: ActivatedRoute
-
+    private activatedRoute: ActivatedRoute,
+    protected loadingService: LoadingService
   ) {
   }
 
@@ -22,8 +29,8 @@ export class GoogleComponent {
     if(code != null){
       this.authService.callbackGoogle(code).subscribe({
         next: (response) => {
-          console.log(response)
-          this.authService.setItemLoginSuccess(response.data)
+          this.authService.initStateUser();
+          this.authService.setItemLoginSuccess(response.data);
         },
         error: (error) => {
           console.log(error)
