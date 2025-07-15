@@ -1,0 +1,51 @@
+<div class="card sidebar">
+  <div class="logo h-1/10 flex items-center pb-4">
+    <img src="fpt_logo.webp" class="img-size">
+    <div class="text-title w-1/2">Fpt Admin</div>
+  </div>
+  <div class="menu h-7/10">
+    <p-iconfield>
+      <p-inputicon styleClass="pi pi-search"/>
+      <input type="text" pInputText placeholder="Search" class="w-1/1" style="border-radius: 24px"/>
+    </p-iconfield>
+    <div class="mt-4">
+      <p-panelmenu [model]="items" [style]="{border: 'unset'}">
+        <ng-template #item let-item>
+          @if (item.route) {
+            <a [routerLink]="item.route" class="flex cursor-pointer text-color px-3 py-2">
+              <span class="item.icon"></span>
+              <span>{{ item.label }}</span>
+            </a>
+          } @else if (item.url) {
+            <a [routerLink]="item.url">
+              <span class="item.icon"></span>
+              <span>{{ item.label }}</span>
+            </a>
+          } @else {
+            <span class="flex items-center cursor-pointer text-surface-700 dark:text-surface-0 px-4 py-2">
+                        <span [class]="item.icon"></span>
+                        <span class="ml-2">{{ item.label }}</span>
+              @if (item.items) {
+                <i class="pi pi-angle-down text-primary ml-auto"></i>
+              }
+            </span>
+          }
+        </ng-template>
+      </p-panelmenu>
+      <p-panel-menu [model]="signoutItems" [style]="{border: 'unset'}">
+        <ng-template #signoutItem let-signoutItem>
+          <span class="flex items-center cursor-pointer text-surface-700 dark:text-surface-0 px-4 py-2">
+                        <span [class]="signoutItem.icon"></span>
+                        <span class="ml-2"></span>
+            </span>
+        </ng-template>
+      </p-panel-menu>
+    </div>
+    <div class="mt-8">
+
+    </div>
+  </div>
+  <div class="other h-2/10">
+  </div>
+
+</div>

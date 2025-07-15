@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
-import {AuthService} from '../../../../core/services/AuthService';
+import {AuthService} from '../../../core/services/AuthService';
 import {AsyncPipe, NgIf} from '@angular/common';
-import {User} from '../../../../core/models/user/User';
+import {User} from '../../../core/models/user/User';
 
 @Component({
   selector: 'app-home',

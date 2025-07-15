@@ -1,8 +1,10 @@
 @import "tailwindcss";
+@import "primeicons/primeicons.css";
 
 
 :root {
   --main-gradient: linear-gradient(89.93deg, #ed480d 0.06%, #f15c0a 37.34%, #f88005 79.21%);
+  --bg-admin: #f6f7f2;
 }
 
 /*căn giữa màn hình*/
@@ -96,7 +98,7 @@ app-root{
   color: gray;
 }
 .text-title{
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-weight: bold;
 }
 .text-href{
@@ -121,4 +123,22 @@ app-root{
   background-repeat: no-repeat;
   background-position: center;
 }
+.img-size{
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+  margin-right: 10px;
+}
+.card{
+  background: #ffffff;
+  box-shadow:  0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  padding: 16px 24px;
+}
+.p-panelmenu-panel{
+  border: unset !important;
+}
+
 

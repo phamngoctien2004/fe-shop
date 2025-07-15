@@ -2,10 +2,11 @@ import { Routes } from '@angular/router';
 import {LoginComponent} from './modules/auth/login/login.component';
 import {VerifyComponent} from './modules/auth/verify/verify.component';
 import {GoogleComponent} from './modules/auth/google/google.component';
-import {HomeComponent} from './modules/pages/user/home/home.component';
-import {DashboardComponent} from './modules/dashboard/dashboard/dashboard.component';
+import {HomeComponent} from './modules/user/home/home.component';
+import {DashboardComponent} from './modules/admin/pages/dashboard/dashboard.component';
 import {AuthGuard} from './core/guards/AuthGuard';
 import {RoleGuard} from './core/guards/RoleGuard';
+import {AdminComponent} from './modules/admin/layout/admin/admin.component';
 
 export const routes: Routes = [
   {
@@ -14,8 +15,14 @@ export const routes: Routes = [
   },
   {
     path: 'dashboard',
-    component: DashboardComponent,
-    canActivate: [AuthGuard, RoleGuard],
+    component: AdminComponent,
+    children: [
+      {
+        path:'',
+        component: DashboardComponent
+      },
+    ],
+    // canActivate: [AuthGuard, RoleGuard],
     data: {
       roles: ['ADMIN']
     }
